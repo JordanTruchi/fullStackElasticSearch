@@ -1,6 +1,6 @@
 const test1AddDocToIndex = {
     name: 'yo',
-    state: 'trama',
+    state: 'dffdfd',
     date: 'yoyoyyo',
     author: 'yoyoyyo',
     businessCore: 'yoyoyyo',
@@ -11,7 +11,7 @@ const test1AddDocToIndex = {
           lowLevels: [
               {
                   name: "lowName",
-                  content: "lowContent",
+                  content: "pussu",
               },
               {
                   name: "lowName",
@@ -38,7 +38,7 @@ const test1AddDocToIndex = {
 
   const test2AddDocToIndex = {
     name: 'yi',
-    state: 'A mind needs books like a sword needs a whetstone.',
+    state: 'A mind needs pussu like a sword needs a whetstone.',
     date: 'yi',
     author: 'yi',
     businessCore: 'yi',
@@ -66,8 +66,8 @@ const test1AddDocToIndex = {
                   content: "lowContent",
               },
               {
-                  name: "lowName",
-                  content: "lowContent",
+                  name: "ya",
+                  content: "yo",
               }
           ]
         }
@@ -76,9 +76,10 @@ const test1AddDocToIndex = {
 function isOdd(num) { return num % 2;}
 exports.dataSet = async () => {
     let dataSet = [];
-    for (let index = 0; index < 1000000; index++) {
+    for (let index = 0; index < 10; index++) {
         if(isOdd(index)) dataSet.push(test1AddDocToIndex);
-        else dataSet.push(test2AddDocToIndex);
+        else dataSet.push(test2AddDocToIndex)
+        
     }
     console.log(dataSet.length);
     return dataSet;

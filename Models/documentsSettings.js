@@ -25,7 +25,7 @@ exports.DOC_INDEX_SETTINGS = {
         }
     },
     "settings" : {
-      "number_of_shards" : 5,
+      "number_of_shards" : 9,
       "number_of_replicas" : 0,
       "refresh_interval": -1
     } 
