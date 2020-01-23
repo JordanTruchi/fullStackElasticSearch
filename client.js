@@ -6,8 +6,8 @@ exports.buildClient = (PORT, BASE_URL, TIMEOUT, MAXRETRIES, SNIFFONSTART, HEADER
     requestTimeout: TIMEOUT,
     sniffOnStart: SNIFFONSTART,
     headers: HEADER,
-    auth: {
-      username: 'elastic',
-      password: 'fullStack'
-    }
+    /* auth: {
+      username: 'admin',
+      password: 'password'
+    } */
   })

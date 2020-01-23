@@ -31,7 +31,7 @@ async function run () {
   console.timeEnd("indexing"); 
 
   // set new settings to the index after indexation in order to optimize security
-  await indexPutSettings(client, DOC_INDEX, {"settings" : {"number_of_replicas" : 2 ,"refresh_interval": '30s'}});
+  await indexPutSettings(client, DOC_INDEX, {"settings" : {"number_of_replicas" : 2}});
   
   // refresh index in order to able the search
   await indexRefresh(client, DOC_INDEX) ;
