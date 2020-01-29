@@ -43,7 +43,7 @@ async function run () {
   console.time("searching"); // 159.888ms / 1 M /// 477.236ms / 10 M
   // search in all fields 
   const { body: responseBulk } = await searchInIndex(client, DOC_INDEX, 'ssu');
-  console.log(responseBulk.hits.hits, responseBulk.hits.hits.length);
+  console.log(responseBulk.hits.hits.length);
   console.timeEnd("searching");
   client.cluster.health({},function(err,resp,status) {  
     console.log("-- Client Health --",resp);

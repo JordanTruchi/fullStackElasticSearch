@@ -107,7 +107,7 @@ exports.searchInIndex = async (client, index, query) => {
   
   return await client.search({
     index: index,
-    size: 10,
+    size: 10000,
     body: {
       query: {
         "bool": {
@@ -121,7 +121,7 @@ exports.searchInIndex = async (client, index, query) => {
           "should": [
             {"query_string" : {
               "query" : '*'+query+'*',
-              "fields": ['name^2', 'state', 'date', 'author'],
+              "fields": ['name^2', 'state', 'author'],
             }
           },
           {
@@ -168,7 +168,7 @@ exports.searchInIndex = async (client, index, query) => {
         "</span>"
       ],
       "order": "score",
-      "number_of_fragments": 3,
+      "number_of_fragments": 9,
       "fields" : {
         "id": {},
         "name" : {}, 
