@@ -107,14 +107,32 @@ exports.searchInIndex = async (client, index, query) => {
   
   return await client.search({
     index: index,
-    size: 10000,
+    size: 10,
     body: {
       query: {
         "bool": {
+          "must_not": [
+            {
+              "term": {
+                "state": 'pending'
+              }
+            }
+          ],
           "should": [
             {"query_string" : {
               "query" : '*'+query+'*',
-              "fields": ['name^2', 'state', 'date', 'author']
+              "fields": ['name^2', 'state', 'date', 'author'],
+            }
+          },
+          {
+            "nested" : {
+              "path" : "businessCore",
+              "query": {
+                "query_string" : {
+                  "query" : '*'+query+'*',
+                  "fields": ["businessCore.name^2"]
+                }
+              }
             }
           },
           {
@@ -152,15 +170,20 @@ exports.searchInIndex = async (client, index, query) => {
       "order": "score",
       "number_of_fragments": 3,
       "fields" : {
+        "id": {},
         "name" : {}, 
         "state" : {},
         "date" : {},
         "author" : {},
+        "businessCore.id": {},
+        "businessCore.name": {},
+        "hightLevels.id" : {},
         "hightLevels.name" : {}, 
         "hightLevels.content" : {},
+        "hightLevels.lowLevels.id" : {}, 
         "hightLevels.lowLevels.name" : {}, 
         "hightLevels.lowLevels.content" : {}
-      } 
+      }
     }
   }     
 })

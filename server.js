@@ -31,7 +31,7 @@ async function run () {
   console.timeEnd("indexing"); 
 
   // set new settings to the index after indexation in order to optimize security
-  await indexPutSettings(client, DOC_INDEX, {"settings" : {"number_of_replicas" : 2}});
+  await indexPutSettings(client, DOC_INDEX, {"settings" : {"number_of_replicas" : 2 , "refresh_interval" : "1s"}});
   
   // refresh index in order to able the search
   await indexRefresh(client, DOC_INDEX) ;
@@ -43,7 +43,7 @@ async function run () {
   console.time("searching"); // 159.888ms / 1 M /// 477.236ms / 10 M
   // search in all fields 
   const { body: responseBulk } = await searchInIndex(client, DOC_INDEX, 'ssu');
-  /* console.log(responseBulk.hits.hits, responseBulk.hits.hits.length); */
+  console.log(responseBulk.hits.hits, responseBulk.hits.hits.length);
   console.timeEnd("searching");
   client.cluster.health({},function(err,resp,status) {  
     console.log("-- Client Health --",resp);
