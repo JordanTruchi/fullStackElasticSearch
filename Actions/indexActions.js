@@ -162,7 +162,7 @@ exports.searchInIndex = async (client, index, query) => {
     },
     "highlight" : {
       "pre_tags": [
-        "<span style=\"background-color: yellow\">"
+        "<span class='hightLightSearch'>"
       ],
       "post_tags": [
         "</span>"
