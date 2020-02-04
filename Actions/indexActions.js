@@ -58,7 +58,6 @@ exports.countDocInIndex = async (client, index) => {
 }
 
 exports.bulkDocToIndex = async (client, index, dataSet) => {
-  
   const data = await dataSet.flatMap(doc => [{ index: { _index: index } }, doc]);
   const { length: dataL } = data;
   let bulkResponse;
@@ -121,7 +120,18 @@ exports.searchInIndex = async (client, index, query) => {
           "should": [
             {"query_string" : {
               "query" : '*'+query+'*',
-              "fields": ['name^2', 'state', 'author'],
+              "fields": ['name^2', 'state']
+            }
+          },
+          {
+            "nested" : {
+              "path" : "author",
+              "query": {
+                "query_string" : {
+                  "query" : '*'+query+'*',
+                  "fields": ["author.fname", "author.lname", "author.email"]
+                }
+              }
             }
           },
           {
@@ -170,17 +180,16 @@ exports.searchInIndex = async (client, index, query) => {
       "order": "score",
       "number_of_fragments": 9,
       "fields" : {
-        "id": {},
         "name" : {}, 
         "state" : {},
         "date" : {},
-        "author" : {},
+        "author.fname" : {},
+        "author.lname" : {},
+        "author.email" : {},
         "businessCore.id": {},
         "businessCore.name": {},
-        "hightLevels.id" : {},
         "hightLevels.name" : {}, 
         "hightLevels.content" : {},
-        "hightLevels.lowLevels.id" : {}, 
         "hightLevels.lowLevels.name" : {}, 
         "hightLevels.lowLevels.content" : {}
       }

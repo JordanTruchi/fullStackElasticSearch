@@ -7,7 +7,16 @@ exports.DOC_INDEX_SETTINGS = {
             "name" : { "type" : "text" },
             "state" : { "type" : "text" },
             "date" : { "type" : "date" },
-            "author" : { "type" : "text" },
+            "author" : {
+              "type": "nested",
+              "properties" : {
+                "id": { "type": "integer" },
+                "role": { "type": "text" },
+                "email": { "type": "text" },
+                "fname": { "type": "text" },
+                "lname": { "type": "text" }
+              }
+            },
             "businessCore" : {
               "type": "nested",
               "properties": {

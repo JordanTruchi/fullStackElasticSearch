@@ -5,9 +5,9 @@ const { buildClient } = require('./client.js');
 const { indexExist, indexDelete, indexPost, indexGetMapping, addDocToIndex, bulkDocToIndex, indexPutSettings, indexRefresh, countDocInIndex, searchInIndex } = require('./Actions/indexActions.js');
 const { dataSet } = require('./Actions/testExemple.js');
 
-const client = buildClient(PORT, BASE_URL, TIMEOUT, MAXRETRIES, SNIFFONSTART, HEADER);
+exports.client = buildClient(PORT, BASE_URL, TIMEOUT, MAXRETRIES, SNIFFONSTART, HEADER);
 
-// initialise the server
+/* // initialise the server
 async function run () {
 
   // check if index ixists
@@ -52,4 +52,4 @@ async function run () {
 }
 
 // run initialiase server
-run().then(res => console.log(res.hits.hits.length)).catch(e => console.log(e));
+run().then(res => console.log(res.hits.hits.length)).catch(e => console.log(e)); */
