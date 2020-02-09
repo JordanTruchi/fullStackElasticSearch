@@ -31,7 +31,7 @@ exports.DOC_INDEX_SETTINGS = {
                 }
               }
             },
-            "hightLevels": {
+            "highLevels": {
                 "type": "nested",
                 "properties": {
                   "id": { "type": "integer" },

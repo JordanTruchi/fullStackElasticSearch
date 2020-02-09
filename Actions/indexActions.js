@@ -147,22 +147,22 @@ exports.searchInIndex = async (client, index, query) => {
           },
           {
             "nested" : {
-              "path" : "hightLevels",
+              "path" : "highLevels",
               "query": {
                 "query_string" : {
                   "query" : '*'+query+'*',
-                  "fields": ["hightLevels.name^2", "hightLevels.content^3"]
+                  "fields": ["highLevels.name^2", "highLevels.content^3"]
                 }
               }
             }
           },
           {
             "nested" : {
-              "path" : "hightLevels.lowLevels",
+              "path" : "highLevels.lowLevels",
               "query": {
                 "query_string" : {
                   "query" : '*'+query+'*',
-                  "fields": ["hightLevels.lowLevels.name^2", "hightLevels.lowLevels.content^3"]
+                  "fields": ["highLevels.lowLevels.name^2", "highLevels.lowLevels.content^3"]
                 }
               }
             }
@@ -188,10 +188,10 @@ exports.searchInIndex = async (client, index, query) => {
         "author.email" : {},
         "businessCore.id": {},
         "businessCore.name": {},
-        "hightLevels.name" : {}, 
-        "hightLevels.content" : {},
-        "hightLevels.lowLevels.name" : {}, 
-        "hightLevels.lowLevels.content" : {}
+        "highLevels.name" : {}, 
+        "highLevels.content" : {},
+        "highLevels.lowLevels.name" : {}, 
+        "highLevels.lowLevels.content" : {}
       }
     }
   }     
